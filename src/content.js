@@ -1,50 +1,36 @@
 "use strict";
 
-const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true };
+// The stylesheet is injected by the manifest and every rule is scoped to
+// html[data-rpm-accent], so this script only has to mirror settings onto <html>.
+// src/visualizer.js (page world) reads the same attributes.
+
+const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true, viz: true, blur: 48 };
 const ACCENTS = ["iris", "rose", "foam", "pine", "gold", "love"];
-const LINK_ID = "rpm-theme";
 const root = document.documentElement;
 
-let current = DEFAULTS;
-
 function apply(settings) {
-  const s = (current = { ...DEFAULTS, ...settings });
-  let link = document.getElementById(LINK_ID);
+  const s = { ...DEFAULTS, ...settings };
 
   if (!s.enabled) {
-    link?.remove();
-    root.removeAttribute("data-rpm-accent");
+    for (const a of ["data-rpm-accent", "data-rpm-glass", "data-rpm-artwork", "data-rpm-viz"]) {
+      root.removeAttribute(a);
+    }
+    root.style.removeProperty("--rpm-blur");
     return;
-  }
-
-  if (!link) {
-    link = document.createElement("link");
-    link.id = LINK_ID;
-    link.rel = "stylesheet";
-    link.href = browser.runtime.getURL("src/theme.css");
-    // <head> may not exist yet at document_start; <html> always does.
-    (document.head || root).appendChild(link);
   }
 
   root.dataset.rpmAccent = ACCENTS.includes(s.accent) ? s.accent : DEFAULTS.accent;
   root.toggleAttribute("data-rpm-glass", s.glass);
   root.toggleAttribute("data-rpm-artwork", s.artwork);
+  root.toggleAttribute("data-rpm-viz", s.viz);
+  const blur = Math.min(120, Math.max(0, Number(s.blur) || 0));
+  root.style.setProperty("--rpm-blur", `${blur}px`);
 }
 
-// Apply defaults synchronously so the page never flashes the stock theme.
+// Apply defaults synchronously so the stock theme never flashes.
 apply(DEFAULTS);
 browser.storage.local.get(DEFAULTS).then(apply);
 
-browser.storage.onChanged.addListener((changes, area) => {
-  if (area !== "local") return;
-  browser.storage.local.get(DEFAULTS).then(apply);
+browser.storage.onChanged.addListener((_changes, area) => {
+  if (area === "local") browser.storage.local.get(DEFAULTS).then(apply);
 });
-
-// The sheet may have been parked on <html> before <head> existed, and the page can
-// swap <head> out later. Keep the link inside the live <head>.
-new MutationObserver(() => {
-  if (!current.enabled || !document.head) return;
-  const link = document.getElementById(LINK_ID);
-  if (!link) apply(current);
-  else if (link.parentNode !== document.head) document.head.appendChild(link);
-}).observe(root, { childList: true });
