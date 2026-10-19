@@ -50,6 +50,26 @@ npm run build    # packages the extension into web-ext-artifacts/
 
 Requires Firefox 142 or newer.
 
+### Permanent install (signed)
+
+Release builds of Firefox only install add-ons signed by Mozilla. Signing is free:
+
+1. Sign in at [addons.mozilla.org](https://addons.mozilla.org/developers/) and create API
+   credentials under **Tools → Manage API Keys**.
+2. Run:
+
+   ```sh
+   WEB_EXT_API_KEY=user:xxxx WEB_EXT_API_SECRET=xxxx npm run sign
+   ```
+
+   This uploads the build as an **unlisted** add-on (signed, but not shown in the
+   store) and writes the signed `.xpi` to `web-ext-artifacts/`.
+3. Open that `.xpi` in Firefox (`firefox web-ext-artifacts/*.xpi`) and click **Add**.
+
+To publish it publicly on the add-ons store instead, run `npm run sign:listed`. It uses
+the listing text in `amo-metadata.json` and goes through Mozilla's review. Each new
+upload needs a higher `version` in `manifest.json`.
+
 ## How it works
 
 | File | Role |

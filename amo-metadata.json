@@ -1,0 +1,14 @@
+{
+  "version": {
+    "license": "MIT"
+  },
+  "categories": {
+    "firefox": ["appearance"]
+  },
+  "summary": {
+    "en-US": "A cleaner, minimal YouTube Music in the Rosé Pine Moon palette, with a blurred music visualizer behind the page."
+  },
+  "description": {
+    "en-US": "Reskins music.youtube.com with the Rosé Pine Moon colour palette and a calmer, more minimal layout: one consistent type scale, tidy buttons and rows, glass panels and a clear accent for primary actions.\n\nA music visualizer reacts to whatever is playing and sits behind the whole page under an adjustable blur. Pick from six accent colours and toggle the visualizer, frosted glass and rounded artwork from the toolbar popup.\n\nNo tracking, no network requests, only the storage permission."
+  }
+}

@@ -4,8 +4,9 @@
   "version": "1.2.0",
   "description": "A cleaner YouTube Music, themed with the Rosé Pine Moon palette.",
   "icons": {
-    "48": "icons/icon.svg",
-    "96": "icons/icon.svg"
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   },
   "browser_specific_settings": {
     "gecko": {
@@ -58,6 +59,10 @@
   "action": {
     "default_title": "Rosé Pine Moon",
     "default_popup": "src/popup/popup.html",
-    "default_icon": "icons/icon.svg"
+    "default_icon": {
+      "16": "icons/icon.svg",
+      "32": "icons/icon.svg",
+      "48": "icons/icon-48.png"
+    }
   }
 }
