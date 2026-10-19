@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rosé Pine Moon</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../../icons/icon.svg" alt="" width="28" height="28" />
+      <div>
+        <h1>Rosé Pine Moon</h1>
+        <p>for YouTube Music</p>
+      </div>
+      <label class="switch" title="Enable theme">
+        <input type="checkbox" id="enabled" />
+        <span aria-hidden="true"></span>
+        <span class="sr-only">Enable theme</span>
+      </label>
+    </header>
+
+    <main id="options">
+      <section>
+        <h2>Accent</h2>
+        <div class="swatches" role="radiogroup" aria-label="Accent colour">
+          <label><input type="radio" name="accent" value="iris" /><span style="--c: #c4a7e7"></span>Iris</label>
+          <label><input type="radio" name="accent" value="rose" /><span style="--c: #ea9a97"></span>Rose</label>
+          <label><input type="radio" name="accent" value="foam" /><span style="--c: #9ccfd8"></span>Foam</label>
+          <label><input type="radio" name="accent" value="pine" /><span style="--c: #3e8fb0"></span>Pine</label>
+          <label><input type="radio" name="accent" value="gold" /><span style="--c: #f6c177"></span>Gold</label>
+          <label><input type="radio" name="accent" value="love" /><span style="--c: #eb6f92"></span>Love</label>
+        </div>
+      </section>
+
+      <section class="toggles">
+        <label class="row">
+          <span>
+            <strong>Frosted glass</strong>
+            <small>Blur behind the top bar and player</small>
+          </span>
+          <span class="switch small">
+            <input type="checkbox" id="glass" />
+            <span aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="row">
+          <span>
+            <strong>Rounded artwork</strong>
+            <small>Soft corners, shadows and hover lift</small>
+          </span>
+          <span class="switch small">
+            <input type="checkbox" id="artwork" />
+            <span aria-hidden="true"></span>
+          </span>
+        </label>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

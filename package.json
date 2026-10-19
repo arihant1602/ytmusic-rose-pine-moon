@@ -1,0 +1,16 @@
+{
+  "name": "ytmusic-rose-pine-moon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firefox extension that reskins YouTube Music with the Rosé Pine Moon palette.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "web-ext run",
+    "lint": "web-ext lint",
+    "build": "web-ext build --overwrite-dest"
+  },
+  "devDependencies": {
+    "web-ext": "^10.8.0"
+  }
+}
