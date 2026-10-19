@@ -4,7 +4,7 @@
 // html[data-rpm-accent], so this script only has to mirror settings onto <html>.
 // src/visualizer.js (page world) reads the same attributes.
 
-const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true, viz: true, blur: 48 };
+const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true, viz: true, blur: 32 };
 const ACCENTS = ["iris", "rose", "foam", "pine", "gold", "love"];
 const root = document.documentElement;
 

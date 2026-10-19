@@ -1,6 +1,6 @@
 "use strict";
 
-const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true, viz: true, blur: 48 };
+const DEFAULTS = { enabled: true, accent: "iris", glass: true, artwork: true, viz: true, blur: 32 };
 const ACCENT_COLORS = {
   iris: "#c4a7e7",
   rose: "#ea9a97",

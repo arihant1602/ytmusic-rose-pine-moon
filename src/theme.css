@@ -75,7 +75,7 @@ html[data-rpm-accent] {
   --rpm-r-lg: 14px;
   --rpm-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  --rpm-blur: 48px;
+  --rpm-blur: 32px;
 
   color-scheme: dark;
   background: var(--rp-base) !important;
@@ -420,6 +420,45 @@ html[data-rpm-accent] ytmusic-guide-entry-renderer[active] .guide-icon {
   color: var(--rpm-accent) !important;
 }
 
+/* Collapsed sidebar: centred icon-over-label tiles instead of a clipped row */
+html[data-rpm-accent] ytmusic-guide-entry-renderer[is-collapsed] tp-yt-paper-item {
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 6px;
+  height: 60px !important;
+  min-height: 60px !important;
+  margin: 2px 6px !important;
+  padding: 0 !important;
+}
+
+html[data-rpm-accent] ytmusic-guide-entry-renderer[is-collapsed] yt-icon,
+html[data-rpm-accent] ytmusic-guide-entry-renderer[is-collapsed] .guide-icon {
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+}
+
+html[data-rpm-accent] ytmusic-guide-entry-renderer[is-collapsed] .title,
+html[data-rpm-accent] ytmusic-guide-entry-renderer[is-collapsed] yt-formatted-string {
+  max-width: 56px;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 12px !important;
+  letter-spacing: 0.01em !important;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html[data-rpm-accent] #mini-guide ytmusic-guide-signin-promo-renderer,
+html[data-rpm-accent] #mini-guide yt-formatted-string {
+  font-size: 10px !important;
+}
+
 /* Library / playlist entries under the main nav */
 html[data-rpm-accent] ytmusic-guide-entry-renderer .subtitle {
   font-size: var(--rpm-fs-sm) !important;
@@ -498,6 +537,12 @@ html[data-rpm-accent] .ytSpecButtonShapeNextIconButton {
 html[data-rpm-accent] .yt-spec-button-shape-next--size-l.yt-spec-button-shape-next--icon-button,
 html[data-rpm-accent] .ytSpecButtonShapeNextSizeL.ytSpecButtonShapeNextIconButton {
   width: 40px !important;
+}
+
+html[data-rpm-accent] .ytSpecButtonShapeNextIconButton .ytSpecButtonShapeNextIcon,
+html[data-rpm-accent] .yt-spec-button-shape-next--icon-button .yt-spec-button-shape-next__icon {
+  color: inherit !important;
+  opacity: 1 !important;
 }
 
 /* Filled — Play, Shuffle */
@@ -1054,13 +1099,32 @@ html[data-rpm-accent] ytmusic-player-bar yt-icon-button:hover yt-icon {
 
 /* Play / pause: accent disc */
 html[data-rpm-accent] ytmusic-player-bar #play-pause-button {
-  width: 40px !important;
-  height: 40px !important;
-  padding: 8px !important;
-  margin: 0 8px !important;
+  box-sizing: border-box !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  padding: 10px !important;
+  margin: 0 10px !important;
+  flex: none;
   background: var(--rpm-accent) !important;
   border-radius: 50% !important;
   transition: transform 0.15s var(--rpm-ease);
+}
+
+/* YTM renders a 40px icon inside the button; size it to the disc. */
+html[data-rpm-accent] ytmusic-player-bar #play-pause-button #button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+html[data-rpm-accent] ytmusic-player-bar #play-pause-button yt-icon,
+html[data-rpm-accent] ytmusic-player-bar #play-pause-button tp-yt-iron-icon {
+  width: 24px !important;
+  height: 24px !important;
 }
 
 html[data-rpm-accent] ytmusic-player-bar #play-pause-button yt-icon,
@@ -1116,6 +1180,109 @@ html[data-rpm-accent] tp-yt-paper-slider .slider-knob-inner {
   border-color: var(--rp-text) !important;
 }
 
+/* ─────────── New player bar (ytmusic-miniplayer, rolling out) ─────────── */
+
+html[data-rpm-accent] ytmusic-miniplayer.ytMusicMiniPlayerHost {
+  background: var(--rpm-panel-solid) !important;
+  border-top: 1px solid var(--rpm-line);
+  color: var(--rp-subtle) !important;
+}
+
+html[data-rpm-accent][data-rpm-glass] ytmusic-miniplayer.ytMusicMiniPlayerHost {
+  background: rgb(35 33 54 / 0.62) !important;
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+html[data-rpm-accent] .ytmusicTrackInfoThumbnail {
+  border-radius: var(--rpm-r-sm) !important;
+}
+
+html[data-rpm-accent] .ytmusicTrackInfoTitle,
+html[data-rpm-accent] .ytmusicTrackInfoTitle * {
+  font-size: var(--rpm-fs-base) !important;
+  font-weight: 600 !important;
+  color: var(--rp-text) !important;
+}
+
+html[data-rpm-accent] .ytmusicTrackInfoByline,
+html[data-rpm-accent] .ytmusicTrackInfoByline * {
+  font-size: var(--rpm-fs-md) !important;
+  color: var(--rp-subtle) !important;
+}
+
+html[data-rpm-accent] .ytMusicMiniPlayerTimeInfo {
+  font-size: var(--rpm-fs-sm) !important;
+  color: var(--rp-muted) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsMainControls {
+  gap: 8px;
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsControlButton button,
+html[data-rpm-accent] .ytMusicMiniPlayerRightSection button {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--rp-subtle) !important;
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsControlButton button:hover,
+html[data-rpm-accent] .ytMusicMiniPlayerRightSection button:hover {
+  background: var(--rpm-fill) !important;
+  color: var(--rp-text) !important;
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsPlayPauseButton button {
+  width: 44px !important;
+  height: 44px !important;
+  margin: 2px 6px;
+  background: var(--rpm-accent) !important;
+  color: var(--rpm-accent-ink) !important;
+  transition: transform 0.15s var(--rpm-ease);
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsPlayPauseButton button:hover {
+  background: var(--rpm-accent) !important;
+  color: var(--rpm-accent-ink) !important;
+  transform: scale(1.06);
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsPlayPauseButton button:active {
+  transform: scale(0.96);
+}
+
+html[data-rpm-accent] .ytmusicPlayerControlsControlButton button[aria-pressed="true"] {
+  color: var(--rpm-accent) !important;
+}
+
+/* Progress: the new bar uses a native range input */
+html[data-rpm-accent] input.ytMusicMiniPlayerProgressBar {
+  accent-color: var(--rpm-accent) !important;
+  background: transparent !important;
+  color: var(--rpm-accent) !important;
+}
+
+html[data-rpm-accent] input.ytMusicMiniPlayerProgressBar::-moz-range-track {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--rp-hl-med) !important;
+}
+
+html[data-rpm-accent] input.ytMusicMiniPlayerProgressBar::-moz-range-progress {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--rp-pine), var(--rpm-accent)) !important;
+}
+
+html[data-rpm-accent] input.ytMusicMiniPlayerProgressBar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--rp-text) !important;
+}
+
 /* ═══════════════════════ Now playing ═══════════════════════ */
 
 html[data-rpm-accent] ytmusic-player-page,
@@ -1128,19 +1295,49 @@ html[data-rpm-accent] ytmusic-app-layout[player-page-open] #player-page {
   background: rgb(35 33 54 / 0.35) !important;
 }
 
+/* Queue / lyrics panel: no box. A feathered pane of frosted glass sits behind it and
+   dissolves into the page on every side; the list itself fades at its scroll edges. */
 html[data-rpm-accent] ytmusic-player-page #side-panel {
-  background: var(--rpm-panel) !important;
-  border: 1px solid var(--rpm-line);
-  border-radius: var(--rpm-r-lg);
-  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  overflow: visible !important;
+  background: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-html[data-rpm-accent][data-rpm-glass] ytmusic-player-page #side-panel {
-  backdrop-filter: blur(20px) saturate(1.2);
+html[data-rpm-accent] ytmusic-player-page #side-panel::before {
+  content: "";
+  position: absolute;
+  inset: -40px -48px;
+  z-index: -1;
+  pointer-events: none;
+  background: rgb(35 33 54 / 0.4);
+  mask-image:
+    linear-gradient(to right, transparent, #000 64px, #000 calc(100% - 64px), transparent),
+    linear-gradient(to bottom, transparent, #000 64px, #000 calc(100% - 64px), transparent);
+  mask-composite: intersect;
 }
 
-html[data-rpm-accent] ytmusic-player-page tp-yt-paper-tabs {
-  border-bottom: 1px solid var(--rpm-line);
+html[data-rpm-accent][data-rpm-glass] ytmusic-player-page #side-panel::before {
+  background: rgb(35 33 54 / 0.28);
+  backdrop-filter: blur(28px) saturate(1.2);
+}
+
+html[data-rpm-accent] ytmusic-player-page #side-panel tp-yt-paper-tabs {
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+
+html[data-rpm-accent] ytmusic-player-page #side-panel #tab-renderer {
+  background: transparent !important;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 24px, #000 calc(100% - 56px), transparent 100%);
+}
+
+/* Tabs that render without paper-tab markup (YTM experiments) still need colour */
+html[data-rpm-accent] ytmusic-player-page #side-panel [role="tab"] {
+  color: var(--rp-subtle);
 }
 
 html[data-rpm-accent] ytmusic-player #song-image,
