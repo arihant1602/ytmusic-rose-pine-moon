@@ -29,17 +29,37 @@ layout, with a blurred music visualizer behind the whole page.
 
 ## Install
 
-### From source (temporary)
+Requires Firefox 142 or newer.
 
-1. Clone this repo.
-2. Open `about:debugging#/runtime/this-firefox` in Firefox.
-3. Click **Load Temporary Add-on…** and select `manifest.json`.
+### Firefox Add-ons (coming soon)
 
-Temporary add-ons are removed when Firefox restarts.
+The extension is in review on [addons.mozilla.org](https://addons.mozilla.org). Once it's
+approved, installing is one click and updates are automatic. This section will link to
+the listing.
 
-### Development
+### From GitHub (try it now)
 
-The project uses Mozilla's [`web-ext`](https://github.com/mozilla/web-ext) tool.
+1. Download this repo: **Code → Download ZIP**, then unzip it. Or clone it:
+
+   ```sh
+   git clone https://github.com/arihant1602/ytmusic-rose-pine-moon.git
+   ```
+
+2. In Firefox, open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on…** and select `manifest.json` in the downloaded folder.
+4. Open [music.youtube.com](https://music.youtube.com). Click the extension's toolbar icon
+   (pin it from the puzzle-piece menu) to change the accent, visualizer and blur.
+
+Firefox removes temporary add-ons when it restarts, so repeat steps 2–3 after a restart,
+or use the store version once it's live.
+
+> The visualizer starts after your first click or key press on the page. Browsers block
+> audio processing until you interact with the page.
+
+## Development
+
+The project uses Mozilla's [`web-ext`](https://github.com/mozilla/web-ext) tool and needs
+Node.js 18+.
 
 ```sh
 npm install
@@ -48,11 +68,10 @@ npm run lint     # validates the manifest and code against addons.mozilla.org ru
 npm run build    # packages the extension into web-ext-artifacts/
 ```
 
-Requires Firefox 142 or newer.
+### Signing your own build
 
-### Permanent install (signed)
-
-Release builds of Firefox only install add-ons signed by Mozilla. Signing is free:
+Release builds of Firefox only permanently install add-ons signed by Mozilla. Signing is
+free:
 
 1. Sign in at [addons.mozilla.org](https://addons.mozilla.org/developers/) and create API
    credentials under **Tools → Manage API Keys**.
@@ -62,13 +81,12 @@ Release builds of Firefox only install add-ons signed by Mozilla. Signing is fre
    WEB_EXT_API_KEY=user:xxxx WEB_EXT_API_SECRET=xxxx npm run sign
    ```
 
-   This uploads the build as an **unlisted** add-on (signed, but not shown in the
-   store) and writes the signed `.xpi` to `web-ext-artifacts/`.
-3. Open that `.xpi` in Firefox (`firefox web-ext-artifacts/*.xpi`) and click **Add**.
+   This signs the build as an **unlisted** add-on (installable, not shown in the store)
+   and writes the signed `.xpi` to `web-ext-artifacts/`.
+3. Open that `.xpi` in Firefox and click **Add**.
 
-To publish it publicly on the add-ons store instead, run `npm run sign:listed`. It uses
-the listing text in `amo-metadata.json` and goes through Mozilla's review. Each new
-upload needs a higher `version` in `manifest.json`.
+`npm run sign:listed` submits to the public store using the listing text in
+`amo-metadata.json`. Each upload needs a higher `version` in `manifest.json`.
 
 ## How it works
 
